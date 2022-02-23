@@ -35,7 +35,7 @@
 							<div class="form-group">
 								<label>Select</label>
 								<select class="form-control" id="select1">
-									<option>Data</option>
+									<option>Data/id</option>
 									<option>Estacion 2</option>
 									<option>Estacion 3</option>
 									<option>Estacion 4</option>
@@ -49,7 +49,7 @@
 							</div>
 							<div class="px-2 pb-2 pb-md-0 text-center">
 								<div id="circles-2"></div>
-								<h6 class="fw-bold mt-3 mb-0">Temperatura</h6>
+								<h6 class="fw-bold mt-3 mb-0">Temperatura °C</h6>
 							</div>
 							<div class="px-2 pb-2 pb-md-0 text-center">
 								<div id="circles-3"></div>
@@ -154,7 +154,7 @@
 							</div>
 							<div class="px-2 pb-2 pb-md-0 text-center">
 								<div id="circles-5"></div>
-								<h6 class="fw-bold mt-3 mb-0">Temperatura</h6>
+								<h6 class="fw-bold mt-3 mb-0">Temperatura °C</h6>
 							</div>
 							<div class="px-2 pb-2 pb-md-0 text-center">
 								<div id="circles-6"></div>
@@ -262,7 +262,7 @@
 								</div>
 								<div class="px-2 pb-2 pb-md-0 text-center">
 									<div id="circles-8"></div>
-									<h6 class="fw-bold mt-3 mb-0">Temperatura</h6>
+									<h6 class="fw-bold mt-3 mb-0">Temperatura °C</h6>
 								</div>
 								<div class="px-2 pb-2 pb-md-0 text-center">
 									<div id="circles-9"></div>
@@ -365,7 +365,7 @@
 								</div>
 								<div class="px-2 pb-2 pb-md-0 text-center">
 									<div id="circles-10"></div>
-									<h6 class="fw-bold mt-3 mb-0">Humedad</h6>
+									<h6 class="fw-bold mt-3 mb-0">Humedad °C</h6>
 								</div>
 								<div class="px-2 pb-2 pb-md-0 text-center">
 									<div id="circles-11"></div>
@@ -638,8 +638,9 @@
 
 				function (snapshot) {
 					globalThis.Humedad = snapshot.val().Humedad;
-					Temperatura = snapshot.val().Temperatura;
-					LDR = snapshot.val().LDR;
+					globalThis.Temperatura = snapshot.val().Temperatura;
+					globalThis.LDR = snapshot.val().LDR;
+					globalThis.suelo = snapshot.val().suelo;
 					console.table(LDR);
 
 					Circles.create({
@@ -661,10 +662,10 @@
 					Circles.create({
 						id: 'circles-2',
 						radius: 60,
-						value: Temperatura,
+						value: Temperatura ,
 						maxValue: 100,
 						width: 5,
-						text: Temperatura + ' °C',
+						text: Temperatura + 'C°',
 						colors: ['#f1f1f1', '#2BB930'],
 						duration: 0,
 						wrpClass: 'circles-wrp',
@@ -679,7 +680,7 @@
 						value: 40,
 						maxValue: 100,
 						width: 7,
-						text: LDR + ' °C',
+						text: LDR + ' %',
 						colors: ['#f1f1f1', '#F25961'],
 						duration: 0,
 						wrpClass: 'circles-wrp',
