@@ -1348,7 +1348,7 @@ body {
   background: #eee !important; }
 
 .btn-toggle {
-  color: #fff !important; }
+  color: rgb(27, 12, 12) !important; }
 
 .logo-header[data-background-color] .navbar-toggler .navbar-toggler-icon {
   color: #ffffff !important; }
