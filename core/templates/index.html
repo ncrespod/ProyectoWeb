@@ -477,7 +477,7 @@
 					globalThis.LDR = snapshot.val().LDR;
 					globalThis.suelo = snapshot.val().suelo;
 					console.table(LDR);
-
+					
 					Circles.create({
 						id: 'circles-1',
 						radius: 60,
@@ -512,7 +512,7 @@
 					Circles.create({
 						id: 'circles-3',
 						radius: 60,
-						value: 40,
+						value: LDR,
 						maxValue: 100,
 						width: 7,
 						text: LDR + ' %',
@@ -527,7 +527,7 @@
 					Circles.create({
 						id: 'circles-13',
 						radius: 60,
-						value: 40,
+						value:  suelo,
 						maxValue: 100,
 						width: 7,
 						text: suelo + ' %',
