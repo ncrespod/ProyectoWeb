@@ -10,7 +10,7 @@
 	<div class="content">
 		<div class="page-inner">
 			<div class="page-header">
-				<h4 class="page-title">DataTables.Net</h4>
+				<h4 class="page-title">Alertas</h4>
 				<ul class="breadcrumbs">
 					<li class="nav-home">
 						<a href="#">
@@ -98,18 +98,18 @@
 								<table id="add-row" class="display table table-striped table-hover" >
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th style="width: 10%">Action</th>
+											<th>Accion</th>
+											<th>Alerta dado por:</th>
+											<th>Valor de sensor / Indicador</th>
+											<th style="width: 10%">Hora/Fecha</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Action</th>
+											<th>Accion</th>
+											<th>Alerta dado por:</th>
+											<th>Valor de sensor / Indicador</th>
+											<th>Hora/Fecha</th>
 										</tr>
 									</tfoot>
 									
@@ -119,6 +119,7 @@
 											<td>{{dato.Accion}}</td>
 											<td>{{dato.Nombre}}</td>
 											<td>{{dato.Valor}}</td>
+											<td>{{dato.HoraFecha}}</td>
 											
 										</tr>		
 										{% endfor %}

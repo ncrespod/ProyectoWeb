@@ -34,5 +34,14 @@ class Postres(View):
 	datos = ref.get()
 
 	# Envio los datos de la tabla 'alertas' a la vista o template 
-	def get(self, request):		
-		return render(request, self.template_name, { "productos": self.datos})
+	def get(self, request):	
+		if request.method == "GET":
+			
+
+			# Accedo a la base de datos, específicamente a la tabla 'alertas' 
+			ref = db.reference('Alertas') 
+			print(ref.get())
+
+			# Llamo los datos que se encuentran en la tabla 'alertas' 
+			datos = ref.get()
+			return render(request, self.template_name, { "productos": datos})
