@@ -27,7 +27,7 @@ class Postres(View):
 	})
 
 	# Accedo a la base de datos, específicamente a la tabla 'alertas' 
-	ref = db.reference('Alertas') 
+	ref = db.reference('Alertas2') 
 	print(ref.get())
 
 	# Llamo los datos que se encuentran en la tabla 'alertas' 
@@ -39,7 +39,7 @@ class Postres(View):
 			
 
 			# Accedo a la base de datos, específicamente a la tabla 'alertas' 
-			ref = db.reference('Alertas') 
+			ref = db.reference('Alertas2') 
 			print(ref.get())
 
 			# Llamo los datos que se encuentran en la tabla 'alertas' 
