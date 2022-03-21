@@ -32,7 +32,7 @@ PRO versions include **Premium UI Kits**, Lifetime updates and **24/7 LIVE Suppo
 <br />
 <br />
 
-![Django Dashboard Atlantis - Template project provided by AppSeed.](https://raw.githubusercontent.com/app-generator/django-dashboard-atlantis/master/media/django-dashboard-atlantis-screen.png)
+![Django Atlantis - Template project provided by AppSeed.](https://raw.githubusercontent.com/app-generator/django-dashboard-atlantis/master/media/django-dashboard-atlantis-screen.png)
 
 <br />
 
