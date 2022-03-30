@@ -13,7 +13,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 
 
-class Postres(View):
+class Alertas(View):
 
 	# Especifico la plantilla o template que usaré 
 	template_name = "tables-data.html"
@@ -36,7 +36,6 @@ class Postres(View):
 	# Envio los datos de la tabla 'alertas' a la vista o template 
 	def get(self, request):	
 		if request.method == "GET":
-			
 
 			# Accedo a la base de datos, específicamente a la tabla 'alertas' 
 			ref = db.reference('Alertas2') 
@@ -44,4 +43,6 @@ class Postres(View):
 
 			# Llamo los datos que se encuentran en la tabla 'alertas' 
 			datos = ref.get()
-			return render(request, self.template_name, { "productos": datos})
+			return render(request, self.template_name, { "data": datos})
+
+	

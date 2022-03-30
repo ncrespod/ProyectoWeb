@@ -1,0 +1,253 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Datatables {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="content ">
+	<div class="panel-header ">
+		<div class="page-inner py-5">
+			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+				<div>
+					<h2 class="text-white pb-2 fw-bold">Dashboard</h2>
+					<h5 class="text-white op-7 mb-2">Monitor de Sensores</h5>
+				</div>
+				<div class="ml-md-auto py-2 py-md-0">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-inner mt--5">
+		<div class="row mt--2">
+
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+
+						<div class="card-header">
+							<h3 class="card-title">
+								<i class="far fa-chart-bar"></i>
+								Temperatura Ambiental
+							</h3>
+							<div class="card-tools">
+								Real time
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+						</div>
+						<div class="px-2 pb-2 pb-md-0 text-center">
+							<div id="circles-1"></div>
+							<h6 class="fw-bold mt-3 mb-0"> Temperatura °C</h6>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+
+						<div class="table-responsive">
+							<table id="add-row" class="display table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Fecha y Hora:</th>
+										<th>Valor de sensor Humedad</th>
+
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Id</th>
+										<th>Fecha y Hora:</th>
+										<th>Valor de sensor Humedad</th>
+
+									</tr>
+								</tfoot>
+
+								<tbody>
+									{% for dato in data3 %}
+									<tr>
+										<td>{{dato.id}}</td>
+										<td>{{dato.HoraFecha}}</td>
+										<td>{{dato.t}}</td>
+
+
+									</tr>
+									{% endfor %}
+
+								</tbody>
+							</table>
+							<button type="submit">Save</button>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<!-- Atlantis DEMO methods, don't include it in your project! -->
+<script src="/static/assets/js/setting-demo2.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script>
+
+	$(document).ready(function () {
+		$('#add-row').DataTable({
+			"pageLength": 15,
+		});
+		$('#basic-datatables').DataTable({
+
+		});
+
+
+	});
+
+
+	com = $("#comport").val();
+	fill_graph_sensor(com);
+
+
+	function fill_graph_sensor() {
+		var dps = []; // dataPoints
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled: true,
+			title: {
+				text: "Gráfica Temperatura vs Tiempo"
+			},
+			axisX: {
+				title: "Tiempo"
+			},
+			axisY: {
+				title: "Temperatura °C",
+				suffix: "°C"
+			},
+			data: [{
+				type: "line",
+				name: "CPU Utilization",
+				connectNullData: true,
+				//nullDataLineDashType: "solid",
+				xValueType: "dateTime",
+				xValueFormatString: "DD MMM hh:mm TT",
+				yValueFormatString: "#,##0.##\"mm\"",
+				dataPoints: dps
+			}]
+		});
+
+		var xVal = 0;
+		var yVal = 100;
+		var updateInterval = 300000;//miliseconds
+		var dataLength = 100; // number of dataPoints visible at any point
+
+		var updateChart = function () {
+
+			$.ajax({
+				type: "get",
+				url: "{% url 'com:fetch_sensor_values_ajax2' %}",
+				data: {
+					'id': com
+				},
+				success: function (data) {
+					console.log(data.result);
+					for (index = 0; index < data.result.length; index++) {
+						var str_array = data.result[index].split(',');
+						dps.push({
+							x: Date.parse(str_array[1]),
+							y: Temperatura
+						});
+					}
+					return data;
+				},
+				error: function () {
+					console.log("error he ji");
+				}
+			});
+
+			if (dps.length > dataLength) {
+				dps.shift();
+			}
+
+			chart.render();
+		};
+
+		updateChart(dataLength);
+		setInterval(function () { updateChart() }, updateInterval);
+	}
+
+	window.setTimeout(function () {
+		location.href = "/Registros2/";
+	}, 28800000); // refresh/redirect after 5 seconds.
+
+
+	var firebaseConfig = {
+		apiKey: "AIzaSyDOzTjEfP9IjQrQ2MvALXpOYfFhgdmUAPM",
+		authDomain: "cacaotech-50682.firebaseapp.com",
+		databaseURL: "https://cacaotech-50682-default-rtdb.firebaseio.com",
+		projectId: "cacaotech-50682",
+		storageBucket: "cacaotech-50682.appspot.com",
+		messagingSenderId: "595258699618",
+		appId: "1:595258699618:web:aad60230ea12d4b5f7863b",
+		measurementId: "G-PN438D53XE"
+	};
+
+
+	firebase.initializeApp(firebaseConfig);
+
+
+	function update() {
+
+		var data1 = "";
+		firebase.database().ref('Data/id').once('value').then(
+
+			function (snapshot) {
+				globalThis.Humedad = snapshot.val().Humedad;
+				globalThis.Temperatura = snapshot.val().Temperatura;
+				globalThis.LDR = snapshot.val().LDR;
+				globalThis.suelo = snapshot.val().suelo;
+				globalThis.Motor = snapshot.val().Motor;
+				console.table(Motor);
+
+				Circles.create({
+					id: 'circles-1',
+					radius: 100,
+					value: Temperatura, 
+					maxValue: 100,
+					width: 5,
+					text: Temperatura + '°C',
+					colors: ['#f1f1f1', '#2BB930'],
+					duration: 0,
+					wrpClass: 'circles-wrp',
+					textClass: 'circles-text',
+					styleWrapper: true,
+					styleText: true
+				})
+				//console.log(title);
+			})
+
+		setTimeout(update, 1000)
+	}
+	update()
+</script>
+
+{% endblock javascripts %}
