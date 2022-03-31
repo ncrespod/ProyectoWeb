@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.views.generic import View 
 from django.http import HttpResponse, JsonResponse
-from datetime import datetime
+from datetime import datetime, timezone
+
+import pytz
+
 import random
 
 # Importo Firebase Admin SDK 
@@ -18,9 +21,11 @@ def fetch_sensor_values_ajax(request):
     data={}
     if request.is_ajax():
         com_port = request.GET.get('id', None)
+      
         # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
-        now=datetime.now()
+        
+        now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
         ref = db.reference('Data/id/suelo') 
         print(ref.get())
@@ -37,7 +42,7 @@ def fetch_sensor_values_ajax2(request):
         com_port = request.GET.get('id', None)
         # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
-        now=datetime.now()
+        now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
         ref = db.reference('Data/id/Temperatura') 
         print(ref.get())
@@ -54,7 +59,7 @@ def fetch_sensor_values_ajax3(request):
         com_port = request.GET.get('id', None)
         # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
-        now=datetime.now()
+        now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
         ref = db.reference('Data/id/Humedad') 
         print(ref.get())
@@ -71,7 +76,7 @@ def fetch_sensor_values_ajax4(request):
         com_port = request.GET.get('id', None)
         # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
-        now=datetime.now()
+        now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
         ref = db.reference('Data/id/LDR') 
         print(ref.get())
