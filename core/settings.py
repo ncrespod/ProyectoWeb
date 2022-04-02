@@ -32,7 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'alertas',
-    'livereload', # Enable the inner app 
+    'datos',
+    'datos2',
+    'datos3',
+    'datos4', # Enable the inner app 
 ]
 
 MIDDLEWARE = [
@@ -44,7 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livereload.middleware.LiveReloadScript',
+    
     
 ]
 

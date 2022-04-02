@@ -15,6 +15,8 @@ urlpatterns = [
     path("", include("app.urls")), 
     path('',include('com.urls',namespace='com')),
     path('',include("registros.urls")),
+    
+    
  
   
     

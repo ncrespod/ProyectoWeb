@@ -45,7 +45,9 @@
 							<div id="circles-1"></div>
 							<h6 class="fw-bold mt-3 mb-0"> % Humedad de suelo</h6>
 						</div>
-
+						<form action="{% url 'reporte' %}" method="get">
+							<button class="btn btn-default" type="submit">DESCARGAR REPORTE EN EXCEL</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -86,7 +88,7 @@
 
 								</tbody>
 							</table>
-							<button type="submit">Save</button>
+						
 						</div>
 
 
