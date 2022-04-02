@@ -19,7 +19,7 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['192.168.100.21', '127.0.0.1', config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['cacao.pythonanywhere.com', '127.0.0.1', config('SERVER', default='192.168.100.21')]
 
 # Application definition
 
