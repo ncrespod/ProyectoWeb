@@ -13,6 +13,9 @@ import pandas as pd
 # Importo el Servicio Firebase Realtime Database 
 from firebase_admin import db
 
+
+
+
 class ReportePersonalizadoExcel(TemplateView):
     def get(self,request,*args,**kwargs):
         ref = db.reference('Suel') 
@@ -24,7 +27,7 @@ class ReportePersonalizadoExcel(TemplateView):
         for i in a:
             if i:
                 data.append(i)
-        print(data)
+        
         
         with open('Names.csv', 'w') as csvfile: 
             writer = csv.DictWriter(csvfile, fieldnames = field_names) 

@@ -28,7 +28,7 @@ class Alertas(View):
 
 	# Accedo a la base de datos, específicamente a la tabla 'alertas' 
 	ref = db.reference('Alertas2') 
-	print(ref.get())
+	#print(ref.get())
 
 	# Llamo los datos que se encuentran en la tabla 'alertas' 
 	datos = ref.get()
@@ -39,7 +39,7 @@ class Alertas(View):
 
 			# Accedo a la base de datos, específicamente a la tabla 'alertas' 
 			ref = db.reference('Alertas2') 
-			print(ref.get())
+			#print(ref.get())
 
 			# Llamo los datos que se encuentran en la tabla 'alertas' 
 			datos = ref.get()

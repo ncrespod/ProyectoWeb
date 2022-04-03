@@ -41,5 +41,5 @@ urlpatterns = [
     path('reporte2/',ReportePersonalizadoExcel2.as_view(), name = 'reporte2'),
     path('reporte3/',ReportePersonalizadoExcel3.as_view(), name = 'reporte3'),
     path('reporte4/',ReportePersonalizadoExcel4.as_view(), name = 'reporte4'),
-
+    
 ]

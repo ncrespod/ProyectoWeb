@@ -45,6 +45,9 @@
 							<div id="circles-1"></div>
 							<h6 class="fw-bold mt-3 mb-0"> % Humedad de suelo</h6>
 						</div>
+
+						
+						
 						<form action="{% url 'reporte' %}" method="get">
 							<button class="btn btn-default" type="submit">DESCARGAR REPORTE EN EXCEL</button>
 						</form>
@@ -88,7 +91,7 @@
 
 								</tbody>
 							</table>
-						
+							
 						</div>
 
 
@@ -115,6 +118,8 @@
 
 <script>
 	
+	
+	
 	$(document).ready(function () {
 		$('#add-row').DataTable({
 			"pageLength": 15,
@@ -129,7 +134,7 @@
 
 	com = $("#comport").val();
 	fill_graph_sensor(com);
-
+	
 
 	function fill_graph_sensor() {
 		var dps = []; // dataPoints
@@ -158,9 +163,11 @@
 		});
 
 		var xVal = 0;
-		var yVal = 100;
-		var updateInterval = 300000;//miliseconds
-		var dataLength = 100; // number of dataPoints visible at any point
+		var yVal = 2000;
+		var updateInterval = 1000;//miliseconds
+		var dataLength = 720000; // number of dataPoints visible at any point
+		var fecha1
+		
 
 		var updateChart = function () {
 
@@ -174,9 +181,11 @@
 					console.log(data.result);
 					for (index = 0; index < data.result.length; index++) {
 						var str_array = data.result[index].split(',');
+						
+						 
 						dps.push({
 							x: Date.parse(str_array[1]),
-							y: suelo
+							y: parseInt(str_array[0]),
 						});
 					}
 					return data;

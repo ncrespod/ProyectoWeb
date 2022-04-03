@@ -24,13 +24,14 @@ def fetch_sensor_values_ajax(request):
       
         # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
-        
+        name = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
         ref = db.reference('Data/id/suelo') 
-        print(ref.get())
+        
         sensor_val=ref.get()   
-        sensor_data.append(str(sensor_val)+','+ok_date)
+        sensor_data.append(str(sensor_val)+','+ok_date +','+ str([542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]))
+        print(sensor_data)
         data['result']=sensor_data
     else:
         data['result']='Not Ajax'
@@ -86,3 +87,4 @@ def fetch_sensor_values_ajax4(request):
     else:
         data['result']='Not Ajax'
     return JsonResponse(data)
+
