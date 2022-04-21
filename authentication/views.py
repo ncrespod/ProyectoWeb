@@ -3,24 +3,14 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 from django.shortcuts import render
-
 from django.views.generic import View 
-
-
-# Importo Firebase Admin SDK 
 import firebase_admin
-
-# Definimos las credenciales que nos permitirán usar Firebase Admin SDK 
 from firebase_admin import credentials
-
-# Importo el Servicio Firebase Realtime Database 
 from firebase_admin import db
 from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User

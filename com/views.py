@@ -3,32 +3,21 @@ from django.shortcuts import render
 from django.views.generic import View 
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime, timezone
-
 import pytz
-
 import random
-
-# Importo Firebase Admin SDK 
 import firebase_admin
-
-# Definimos las credenciales que nos permitirán usar Firebase Admin SDK 
 from firebase_admin import credentials
-
-# Importo el Servicio Firebase Realtime Database 
 from firebase_admin import db
 
 def fetch_sensor_values_ajax(request):
     data={}
     if request.is_ajax():
         com_port = request.GET.get('id', None)
-      
-        # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
         name = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
-        ref = db.reference('Data/id/suelo') 
-        
+        ref = db.reference('Data/id/suelo')
         sensor_val=ref.get()   
         sensor_data.append(str(sensor_val)+','+ok_date +','+ str([542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]))
         print(sensor_data)
@@ -41,7 +30,6 @@ def fetch_sensor_values_ajax2(request):
     data={}
     if request.is_ajax():
         com_port = request.GET.get('id', None)
-        # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
@@ -58,7 +46,6 @@ def fetch_sensor_values_ajax3(request):
     data={}
     if request.is_ajax():
         com_port = request.GET.get('id', None)
-        # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
@@ -75,7 +62,6 @@ def fetch_sensor_values_ajax4(request):
     data={}
     if request.is_ajax():
         com_port = request.GET.get('id', None)
-        # auto random value if sendor is not connected , you can remove this line
         sensor_data=[]
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
