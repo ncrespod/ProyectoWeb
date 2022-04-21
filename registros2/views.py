@@ -30,9 +30,9 @@ class Reg2(View):
             
 			# Accedo a la base de datos, específicamente a la tabla 'alertas' 
 			ref = db.reference('Tempera')
-			print(ref.get())
+			
 			task=request.POST.get('task')
-			print(task)
+			
 			# Llamo los datos que se encuentran en la tabla 'alertas' 
 			datos = ref.get()
 			return render(request, self.template_name, { "data3": datos})
