@@ -181,8 +181,7 @@
 					console.log(data.result);
 					for (index = 0; index < data.result.length; index++) {
 						var str_array = data.result[index].split(',');
-						
-						 
+					
 						dps.push({
 							x: Date.parse(str_array[1]),
 							y: parseInt(str_array[0]),

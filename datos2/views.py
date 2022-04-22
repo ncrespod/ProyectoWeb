@@ -5,12 +5,8 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.views.generic import View 
 from django.http import HttpResponse, JsonResponse
-import csv 
-# Importo Firebase Admin SDK 
+import csv
 import pandas as pd
-
-
-# Importo el Servicio Firebase Realtime Database 
 from firebase_admin import db
 
 class ReportePersonalizadoExcel2(TemplateView):
@@ -31,13 +27,10 @@ class ReportePersonalizadoExcel2(TemplateView):
             writer.writeheader() 
             writer.writerows(data) 
     
-        #Establecer el nombre de mi archivo
         nombre_archivo = "ReporteTemperatura.xlsx"
-        #Definir el tipo de respuesta que se va a dar
         response = HttpResponse(content_type = "application/ms-excel")
         contenido = "attachment; filename = {0}".format(nombre_archivo)
         response["Content-Disposition"] = contenido
-
         df = pd.read_csv('Names2.csv')
         df.to_excel(response, index=False)
         return response

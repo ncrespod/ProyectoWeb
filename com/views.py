@@ -12,14 +12,12 @@ from firebase_admin import db
 def fetch_sensor_values_ajax(request):
     data={}
     if request.is_ajax():
-        com_port = request.GET.get('id', None)
         sensor_data=[]
-        name = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
         ref = db.reference('Data/id/suelo')
         sensor_val=ref.get()   
-        sensor_data.append(str(sensor_val)+','+ok_date +','+ str([542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]))
+        sensor_data.append(str(sensor_val)+','+ok_date)
         print(sensor_data)
         data['result']=sensor_data
     else:
@@ -29,7 +27,6 @@ def fetch_sensor_values_ajax(request):
 def fetch_sensor_values_ajax2(request):
     data={}
     if request.is_ajax():
-        com_port = request.GET.get('id', None)
         sensor_data=[]
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
@@ -45,7 +42,6 @@ def fetch_sensor_values_ajax2(request):
 def fetch_sensor_values_ajax3(request):
     data={}
     if request.is_ajax():
-        com_port = request.GET.get('id', None)
         sensor_data=[]
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
@@ -61,7 +57,6 @@ def fetch_sensor_values_ajax3(request):
 def fetch_sensor_values_ajax4(request):
     data={}
     if request.is_ajax():
-        com_port = request.GET.get('id', None)
         sensor_data=[]
         now=datetime.now(pytz.timezone('America/Bogota'))
         ok_date=str(now.strftime('%Y-%m-%d %H:%M:%S'))
